@@ -66,6 +66,8 @@ app.put("/api/courses/:id", (req, res) => {
     return;
   }
   // Update course
+  course.name = req.body.name;
+  res.send(course);
 });
 
 /**********************************************************************/
@@ -80,7 +82,7 @@ function validateCourse(course) {
 }
 
 function findCourse(req) {
-  return courses.find((c) => c.id === parseInt(courses.params.id));
+  return courses.find((c) => c.id === parseInt(req.params.id));
 }
 /**********************************************************************/
 
