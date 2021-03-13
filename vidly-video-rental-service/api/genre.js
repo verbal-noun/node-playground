@@ -46,6 +46,22 @@ app.post("/api/genres", (req, res) => {
   genres.push(genre);
   res.send(genre);
 });
+
+// Put requests
+app.put("api/genres/:id", (req, res) => {
+  const genre = findGenre(req);
+  if (!genre) return throwGenre404(res);
+
+  const { error } = validateGenre(req.body);
+  if (error) {
+    res.status(400).send(error.details[0].message);
+    return;
+  }
+
+  // Update the genre
+  genre.name = req.body.name;
+  res.send(genre);
+});
 /**********************************************************************/
 // Helper Functions
 function findGenre(req) {
