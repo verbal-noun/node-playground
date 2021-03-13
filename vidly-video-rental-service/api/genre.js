@@ -62,6 +62,17 @@ app.put("api/genres/:id", (req, res) => {
   genre.name = req.body.name;
   res.send(genre);
 });
+
+app.delete("/api/genres/:id", (req, res) => {
+  // Find genre
+  const genre = findGenre(req);
+  if (!genre) return throwGenre404(res);
+
+  const index = genres.indexOf(genre);
+  genres.splice(index, 1);
+
+  res.send(genre);
+});
 /**********************************************************************/
 // Helper Functions
 function findGenre(req) {
