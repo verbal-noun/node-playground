@@ -1,4 +1,4 @@
-// This require returns a function 
+// This require returns a function
 const Joi = require("joi");
 const express = require("express");
 const app = express();
